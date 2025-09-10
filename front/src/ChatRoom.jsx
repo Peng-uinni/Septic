@@ -1,17 +1,18 @@
 import { useEffect, useState, useRef } from "react"
 import { useParams } from "react-router-dom"
+import io from "socket.io-client"
 
 function ChatRoom(){
-    const { roomCode } = useParams()
+    const { roomcode } = useParams()
     const socket = useRef(null)
 
     useEffect(()=>{
         socket.current = io("http://localhost:3000")
 
-        console.log(roomCode)
+        console.log(roomcode)
 
-        socket.current.emit('join-room', {"code":roomCode})
-        console.log("joined "+roomCode)
+        socket.current.emit('join-room', {"code":roomcode})
+        console.log("joined "+roomcode)
         socket.current.on('msg', (data)=>{
         console.log(data)
         })
@@ -24,6 +25,7 @@ function ChatRoom(){
     return (
         <>
         <h1>Poop</h1>
+        <h2>More Poop</h2>
         </>
     )
 }
