@@ -24,6 +24,11 @@ io.on('connection', (socket) => {
         console.log("joined: "+data)
     })
 
+    socket.on('message', (data)=>{
+        console.log(data.message)
+        socket.emit('message', data)
+    })
+
     socket.on('disconnect', (data)=>{
         console.log("disconnect " + data)
     })
