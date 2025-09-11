@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Index from './Index.jsx'
 import JoinRoom from './JoinRoom.jsx'
 
-import './App.css'
+
 
 function App() {
   return(
@@ -16,4 +16,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

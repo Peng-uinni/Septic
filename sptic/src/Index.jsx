@@ -2,6 +2,8 @@
 import React from 'react';
 import LightRays from './lightRays.jsx';
 import './index.css'
+import { Link } from 'react-router-dom';
+
 
 
 const Index = () => {
@@ -38,8 +40,8 @@ const Index = () => {
       </button>
 
       {/* Right button */}
-      <button className="bg-white text-black px-8 py-6 rounded-lg hover:bg-gray-200">
-        Join Room
+      <button className="bg-white text-black px-8 py-6 rounded-lg hover:bg-gray-200" > 
+        <Link to="/join">Join</Link>
       </button>
     </div>
   </div>
