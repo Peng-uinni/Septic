@@ -21,16 +21,17 @@ app.use(express.static(pageDir))
 io.on('connection', (socket) => {
     console.log("user connected")
     socket.on('join_room', (data)=>{
-        console.log("joined: "+data)
+        socket.join(data.roomcode)
+        console.log("[CLIENT JOIN] "+data.player_name+" joined room: "+data.roomcode)
     })
 
     socket.on('message', (data)=>{
-        console.log(data.message)
-        socket.emit('message', data)
+        io.to(data.roomcode).emit('message', data)
+        console.log("[MESSAGE] "+data.message)
     })
 
     socket.on('disconnect', (data)=>{
-        console.log("disconnect " + data)
+        console.log("DC")
     })
 })
 
