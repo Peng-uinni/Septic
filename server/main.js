@@ -26,7 +26,7 @@ io.on('connection', (socket) => {
 
     socket.on('message', (data)=>{
         io.to(data.roomcode).emit('message', data)
-        console.log("[MESSAGE] "+data.message)
+        console.log("[MESSAGE] "+data.player_name+": "+data.message)
     })
 
     socket.on('disconnect', (data)=>{

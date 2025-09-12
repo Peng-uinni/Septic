@@ -23,7 +23,7 @@ function ChatRoom(){
 
         socket.current.on('message', (data)=>{
             setMessages(prevMes => {
-                return [ ...prevMes, data.message ]
+                return [ ...prevMes, data ]
             })
         })
 
@@ -49,8 +49,8 @@ function ChatRoom(){
 
         <div id="messages">
             <h4>Messages</h4>
-            {messages.map((message, index)=>(
-                <div>{message}</div>
+            {messages.map((m, i)=>(
+                <div>{m.player_name}: {m.message}</div>
             ))}
         </div>
 
