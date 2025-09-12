@@ -1,0 +1,20 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Index from './Index.jsx'
+import JoinRoom from './JoinRoom.jsx'
+import ChatRoom from './ChatRoom.jsx'
+import CreateRoom from './CreateRoom.jsx'
+
+function App() {
+  return(
+    <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<Index></Index>}></Route>
+      <Route path='/join' element={<JoinRoom></JoinRoom>}></Route>
+      <Route path='/create' element={<CreateRoom></CreateRoom>}></Route>
+      <Route path='/lobby/:roomcode' element={<ChatRoom></ChatRoom>}></Route>
+    </Routes>
+    </BrowserRouter>
+  )
+}
+
+export default App
