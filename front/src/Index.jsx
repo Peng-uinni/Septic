@@ -25,25 +25,27 @@ function Index(){
             Stand out from the crowd!
         </h1>
 
-        {/* Buttons row */}
-        <div className="flex w-full max-w-xl gap-6">
+       {/* Buttons row */}
+        <div className="flex w-full max-w-xl gap-30">
             {/* Left button */}
-            <Link to="/create">
+            <Link to="/create" className="flex-1" >
             <button
-            className="flex-1 py-6 rounded-xl bg-white text-black font-medium 
+            className="w-full py-6 rounded-xl bg-white text-black font-medium 
                         shadow-lg border border-gray-200 
-                        hover:bg-gray-100 hover:scale-105 transition-transform duration-300 mr-15"
+                        hover:bg-gray-100 hover:scale-105 transition-transform duration-300 "
             >
             Create Room
             </button>
             </Link>
             
+            
+
             {/* Right button */}
             <Link to="/join" className="flex-1">
             <button
             className="w-full py-6 rounded-xl bg-white text-black font-medium 
                     shadow-lg border border-gray-200 
-                    hover:bg-gray-100 hover:scale-105 transition-transform duration-300 ml-15">
+                    hover:bg-gray-100 hover:scale-105 transition-transform duration-300 ">
             Join Room
             </button>
             </Link>
