@@ -38,8 +38,6 @@ function Index(){
             </button>
             </Link>
             
-            
-
             {/* Right button */}
             <Link to="/join" className="flex-1">
             <button
