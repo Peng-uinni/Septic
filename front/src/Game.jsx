@@ -1,42 +1,43 @@
 import { useState, useEffect } from "react"
+import WaitRoom from "./Game/WaitRoom"
+import PromptPhase from "./Game/PromptPhase"
 
-function Game({socket, isHost}){
+function Game({socket, isHost, roomCode}){
     const [isStarted, setIsStarted] = useState(false)
     const [players, setPlayers] = useState([]) //list of players in the lobby
     const [playerPrompt, setPlayerPrompt] = useState('') //player prompt
 
     useEffect(()=>{
-        socket.on('prompt', (data)=>{
-            
+        socket.on("player-sync", (p)=>{
+            setPlayers(p)
         })
 
-        socket.on('')
+        socket.on("game-start", ()=>{
+            setIsStarted(true)
+        })
     }, [])
 
     const startGame = ()=>{
         setIsStarted(true)
+        socket.emit("start", roomCode)
         console.log("game started")
     }
 
-    return(
+    if(!isStarted){
+        return(
         <>
         <WaitRoom 
         startGame={startGame}
         isHost={isHost}
+        players={players}
         />
         </>
-    )
-}
+        )
+    }
 
-function WaitRoom({startGame, isHost}){
     return(
         <>
-        {isHost && <button onClick={startGame}>Start</button>}
-        <div id="players-waiting">
-            Add some text here 
-            <div>Player 1</div>
-            <div>Player 2</div>    
-        </div>
+        Game start stuff here
         </>
     )
 }

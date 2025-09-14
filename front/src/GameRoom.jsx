@@ -38,6 +38,7 @@ function GameRoom(){
     return(
         <>
         <Game
+        socket={socket.current}
         isHost={is_host}
         roomCode={roomCode}
         />
