@@ -20,9 +20,9 @@ function JoinRoom(){
         particleColors={['#ffffff', '#ffffff']}
         particleCount={200}
         particleSpread={10}
-        speed={0.1}
+        speed={0.4}
         particleBaseSize={100}
-        moveParticlesOnHover={true}
+        moveParticlesOnHover={false}
         alphaParticles={false}
         disableRotation={false}
       />
