@@ -46,6 +46,30 @@ io.on('connection', (socket) => {
         io.to(roomcode).emit('game-start')
     })
 
+    socket.on('prompt-submit', (prompt)=>{
+        const playerData = socketToRooms.get(socket.id)
+        if(playerData){
+            playerData.prompt = prompt
+            socketToRooms.set(socket.id, playerData)
+            const room = rooms.get(playerData.roomcode)
+
+            if(!room.prompts){
+                room.prompts = []
+                room.prompts.push(playerData)
+            }
+            else{
+                room.prompts.push(playerData)
+            }
+            rooms.set(playerData.roomcode, room)
+        }
+    })
+
+    socket.on("get-prompts", ()=>{
+        const code = socketToRooms.get(socket.id).roomcode
+        const p = rooms.get(code).prompts
+        socket.emit("get-prompts", p)
+    })
+
     socket.on('disconnect', ()=>{
         const playerData = socketToRooms.get(socket.id)
         if(playerData){
