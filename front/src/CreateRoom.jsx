@@ -8,7 +8,7 @@ function CreateRoom(){
 
     const createRoom = (e)=>{
         e.preventDefault()
-        navigate("/lobby/"+roomCode, {state: {player_name:playerName, is_host:true}})
+        navigate("/lobby/"+roomCode, {state: {player_name:playerName, is_host:true, roomCode:roomCode}})
     }
 
     return(

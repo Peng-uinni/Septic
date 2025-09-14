@@ -1,43 +1,26 @@
-import { useEffect, useState, useRef } from "react"
-import { useParams, useLocation } from "react-router-dom"
-import io from "socket.io-client"
+import { useEffect, useState } from "react"
 
-function ChatRoom(){
-    //getting data from the joinRoom component 
-    const { roomcode } = useParams()
-    const location = useLocation()
-    const playerName = location.state?.player_name
-
-    const socket = useRef(null)
-
+function ChatRoom({socket, roomCode, playerName}){
     const [ currentMessage, setCurrentMessage ] = useState('')
     const [ messages, setMessages ] = useState([])
 
     useEffect(()=>{
-        socket.current = io("http://localhost:3000")
-
-        socket.current.emit('join_room', {
-            "roomcode":roomcode,
-            "player_name": playerName
-        })
-
-        socket.current.on('message', (data)=>{
+        socket.on('message', (data)=>{
             setMessages(prevMes => {
                 return [ ...prevMes, data ]
             })
         })
 
         return ()=>{
-        if(!socket.current) socket.current.disconnect()
+            socket.off("message")
         }
-    }, [roomcode])
-
+    }, [])
 
     const messageInput = (e)=>{
         e.preventDefault()
-        socket.current.emit('message', {
+        socket.emit('message', {
         "message":currentMessage,
-        "roomcode":roomcode,
+        "roomcode":roomCode,
         "player_name":playerName
         })
         setCurrentMessage('')
@@ -45,7 +28,7 @@ function ChatRoom(){
 
     return (
         <>
-        <div id="roomcode">Room Code: {roomcode}</div>
+        <div>Room Code: {roomCode}</div>
 
         <div id="messages">
             <h4>Messages</h4>

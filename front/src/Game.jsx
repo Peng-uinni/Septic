@@ -1,15 +1,9 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 
 function Game({socket, isHost}){
     const [isStarted, setIsStarted] = useState(false)
     const [players, setPlayers] = useState([]) //list of players in the lobby
     const [playerPrompt, setPlayerPrompt] = useState('') //player prompt
-    const [matchPlayer, setMatchPlayer] = useState(null)
-
-    const startGame = ()=>{
-        setIsStarted(true)
-        console.log("game started")
-    }
 
     useEffect(()=>{
         socket.on('prompt', (data)=>{
@@ -19,18 +13,30 @@ function Game({socket, isHost}){
         socket.on('')
     }, [])
 
+    const startGame = ()=>{
+        setIsStarted(true)
+        console.log("game started")
+    }
+
     return(
         <>
-        <WaitRoom startGame={startGame}></WaitRoom>
+        <WaitRoom 
+        startGame={startGame}
+        isHost={isHost}
+        />
         </>
     )
 }
 
-function WaitRoom({startGame}){
+function WaitRoom({startGame, isHost}){
     return(
         <>
-        <div id="players-waiting"></div>
-        <button onClick={startGame}>Start</button>
+        {isHost && <button onClick={startGame}>Start</button>}
+        <div id="players-waiting">
+            Add some text here 
+            <div>Player 1</div>
+            <div>Player 2</div>    
+        </div>
         </>
     )
 }

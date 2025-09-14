@@ -11,7 +11,7 @@ function JoinRoom(){
 
     const formSubmitHandler = (e)=>{
         e.preventDefault()
-        navigate(`/lobby/${roomCode}`, {state: {player_name:playerName, is_host:false}})
+        navigate(`/lobby/${roomCode}`, {state: {player_name:playerName, is_host:false, roomCode:roomCode}})
     }
 
     return(
