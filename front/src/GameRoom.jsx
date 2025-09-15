@@ -36,13 +36,42 @@ function GameRoom(){
     }
     
     return(
-        <>
+         <div className="flex h-screen">
+      <div className="flex-1 bg-gray-100 p-6">
+        <h1 className="text-3xl font-bold">Game Room</h1>
+        <p className="mt-2 text-gray-600">
+          <Game socket={socket.current} isHost={is_host} roomCode={roomCode} />
+        </p>
+
+        <div className="mt-6 h-96 bg-gray-300 rounded-lg flex items-center justify-center">
+          <p className="text-lg text-gray-700">[ Your Game Canvas Here ]</p>
+        </div>
+      </div>
+
+      {/* The chat container needs to be a flexbox with a full height */}
+      <div className="w-80 bg-white shadow-lg border-l p-4 flex flex-col h-full">
+        <h2 className="font-semibold text-xl ">Chat</h2>
+        <ChatRoom
+          socket={socket.current}
+          roomCode={roomCode}
+          playerName={player_name}
+        />
+      </div>
+    </div>
+  );
+}
+
+export default GameRoom;
+
+        
+       /* <>
+        
         <Game
         socket={socket.current}
         isHost={is_host}
         roomCode={roomCode}
         />
-        <hr /> {/* Remove this later, is just here so I can see which box is which */}
+        <hr /> 
         <ChatRoom 
         socket={socket.current}
         roomCode={roomCode}
@@ -50,6 +79,5 @@ function GameRoom(){
         />
         </>
     )
-}
+} */
 
-export default GameRoom
