@@ -70,6 +70,11 @@ io.on('connection', (socket) => {
         socket.emit("get-prompts", p)
     })
 
+    socket.on("show-prompts", (promptIndex)=>{
+        console.log("[SHOW] "+socketToRooms.get(socket.id).roomcode)
+        socket.to(socketToRooms.get(socket.id).roomcode).emit("show-prompts", promptIndex)
+    })
+
     socket.on('disconnect', ()=>{
         const playerData = socketToRooms.get(socket.id)
         if(playerData){

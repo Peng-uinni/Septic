@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import EndPhase from "./EndPhase"
 
-function PromptPhase({socket, duration}){
+function PromptPhase({socket, duration, isHost}){
     const [prompt, setPrompt] = useState("")
     const [timeLeft, setTimeLeft] = useState(duration)
     const [isTime, setIsTime] = useState(false)
@@ -34,6 +34,7 @@ function PromptPhase({socket, duration}){
             <>
             <EndPhase
             socket={socket}
+            isHost={isHost}
             />
             </>
         )

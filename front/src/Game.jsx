@@ -37,7 +37,8 @@ function Game({socket, isHost, roomCode}){
         <>
         <PromptPhase 
         duration={5}
-        socket={socket}/>
+        socket={socket}
+        isHost={isHost}/>
         </>
     )
 }
