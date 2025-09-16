@@ -40,11 +40,13 @@ function GameRoom(){
       <div className="flex-1 bg-gray-100 p-6">
         <h1 className="text-3xl font-bold">Game Room</h1>
         <p className="mt-2 text-gray-600">
-          <Game socket={socket.current} isHost={is_host} roomCode={roomCode} />
+          
         </p>
 
         <div className="mt-6 h-96 bg-gray-300 rounded-lg flex items-center justify-center">
           <p className="text-lg text-gray-700">[ Your Game Canvas Here ]</p>
+
+          <Game socket={socket.current} isHost={is_host} roomCode={roomCode} />
         </div>
       </div>
 

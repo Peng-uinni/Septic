@@ -37,7 +37,7 @@ function ChatRoom({socket, roomCode, playerName}){
     }
 
     return (
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-140">
       {/* Scrollable messages area */}
       <div className="flex-1 overflow-y-auto">
         <h4 className="font-semibold text-lg mb-2">Messages</h4>
