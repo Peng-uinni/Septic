@@ -1,10 +1,14 @@
 import { useState, useEffect, useInsertionEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 function EndPhase({socket, isHost}){
     const [prompts, setPrompts] = useState([]) //contains objects of player and prompt
     const [promptIndex, setPromptIndex] = useState(null)
     const [dispPrompts, setDispPrompts] = useState([])
     const [receivedPrompts, setReceivedPrompts] = useState(false)
+    const [roundEnd, setRoundEnd] = useState(false)
+
+    const navigate = useNavigate()
 
     useEffect(()=>{
         socket.emit("get-prompts");
@@ -43,8 +47,11 @@ function EndPhase({socket, isHost}){
         if(promptIndex < prompts.length && prompts[promptIndex]){
             setDispPrompts(prev => [ ...prev, prompts[promptIndex] ])
             if(isHost) socket.emit("show-prompts", promptIndex)
+            if(promptIndex === prompts.length - 1) setRoundEnd(true)
         }
     }
+
+   
 
     return(
         <>
@@ -58,7 +65,13 @@ function EndPhase({socket, isHost}){
             )
         })}
 
-        {isHost && <button onClick={nextPrompt}>Show</button>}
+        {(isHost && !roundEnd) && <button onClick={nextPrompt}>Show</button>}
+
+        {(isHost && roundEnd) && <>
+            <button>Go To Waiting</button>
+            <button>New Round</button>
+        </>
+        }
         </>
     )
 }

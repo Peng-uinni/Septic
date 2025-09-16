@@ -28,19 +28,21 @@ function ChatRoom({socket, roomCode, playerName}){
 
     const messageInput = (e)=>{
         e.preventDefault()
-        socket.emit('message', {
-        "message":currentMessage,
-        "roomcode":roomCode,
-        "player_name":playerName
-        })
-        setCurrentMessage('')
+        if(currentMessage !== ""){
+          socket.emit('message', {
+          "message":currentMessage,
+          "roomcode":roomCode,
+          "player_name":playerName
+          })
+          setCurrentMessage('')
+        }
     }
 
     return (
         <div className="flex flex-col h-140">
       {/* Scrollable messages area */}
       <div className="flex-1 overflow-y-auto">
-        <h4 className="font-semibold text-lg mb-2">Messages</h4>
+        <h4 className="font-semibold text-lg mb-2">Code: {roomCode}</h4>
         {messages.map((m, i) => (
           <div key={i} className="mb-2">
             <span className="font-bold">{m.player_name}: </span>
