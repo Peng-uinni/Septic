@@ -43,8 +43,8 @@ function GameRoom(){
           
         </p>
 
-        <div className="mt-6 h-96 bg-gray-300 rounded-lg flex items-center justify-center">
-          <p className="text-lg text-gray-700">[ Your Game Canvas Here ]</p>
+        <div className="mt-6 h-160 bg-gray-300 rounded-lg justify-center">
+         
 
           <Game socket={socket.current} isHost={is_host} roomCode={roomCode} />
         </div>
